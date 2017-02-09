@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import {
   Text,StyleSheet,View,Image,TouchableOpacity
 } from 'react-native';
-
+//个人中心
 class Mine extends React.Component {
   render(){
     return(
@@ -22,7 +22,7 @@ class Mine extends React.Component {
     );
   }
 }
-
+//个人中心的item
 class MineItem extends React.Component {
   constructor(props){
     super(props);
