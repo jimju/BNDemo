@@ -112,6 +112,7 @@ const styles = StyleSheet.create({
     fontSize:18,
     color:'#ffffff',
     textAlign:'center',
+    backgroundColor:'#ffffff00',
   },
   itemimage:{
     width:23,
