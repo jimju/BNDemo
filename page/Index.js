@@ -16,6 +16,7 @@ import {IndicatorViewPager, PagerDotIndicator} from 'rn-viewpager';
 var {height, width} = Dimensions.get('window');
 var item_width = (width-1)/2;
 var ScreenWidth = Dimensions.get('window').width;
+//首页
 class Index extends React.Component {
   render(){
     return(
