@@ -28,6 +28,16 @@ class Product extends React.Component {
     };
 }
 
+//跳转产品详情
+_onItemclick(text){
+  const {navigator} = this.props;
+  InteractionManager.runAfterInteractions(() => {
+          navigator.push({
+            component: ProductDetail,
+            name: 'ProductDetail',
+          });
+        });
+}
 
 
    _pressRow(rowID){
@@ -87,7 +97,7 @@ class Product extends React.Component {
               <ListView contentContainerStyle={styles.list} dataSource={this.state.classifies}
               renderRow={this._renderList.bind(this)}/>
             </View>
-            <ProductClassComponent item={this.state.currentId}/>
+            <ProductClassComponent {...this.props} item={this.state.currentId} />
           </View>
         </View>
     );

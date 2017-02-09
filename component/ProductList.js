@@ -8,8 +8,11 @@ import {
   ListView,
   TouchableHighlight,
   ToastAndroid,
+  InteractionManager,
   Image
 } from 'react-native';
+
+import ProductDetail from '../page/ProductDetail';
 
 var Dimensions = require('Dimensions');
 var ScreenWidth = Dimensions.get('window').width;
@@ -37,11 +40,25 @@ class ProductList extends React.Component {
 
   }
 
+  //跳转产品详情
+  _onItemclick(text){
+    const {navigator} = this.props;
+    InteractionManager.runAfterInteractions(() => {
+            navigator.push({
+              component: ProductDetail,
+              name: 'ProductDetail',
+              data: '产品详情',
+              info: text,
+            });
+          });
+  }
+
+
   _renderList(prod) {
     return(
     <TouchableHighlight
         underlayColor={'#fff'}
-               onPress={this.showtoast.bind(this,prod.title)}>
+               onPress={this._onItemclick.bind(this,prod.title)}>
     <View style={styles.listitem}>
 
     <View style={styles.stylecenter}>
@@ -66,6 +83,7 @@ class ProductList extends React.Component {
     }
 
 }
+
 
 const styles = StyleSheet.create({
   list: {

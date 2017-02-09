@@ -1,9 +1,10 @@
 'use strict'
 import React, { Component } from 'react';
 import {
-  Text,View,ListView,StyleSheet,Image,TouchableHighlight
+  Text,View,ListView,StyleSheet,Image,TouchableHighlight,InteractionManager
 } from 'react-native';
 
+import ProductDetail from '../page/ProductDetail';
 
 var ScreenWidth = require('Dimensions').get('window').width;
 class ProductClassComponent extends React.Component {
@@ -25,9 +26,23 @@ class ProductClassComponent extends React.Component {
     };
   }
 
+  //跳转产品详情
+  _onItemclick(text){
+    const {navigator} = this.props;
+    InteractionManager.runAfterInteractions(() => {
+            navigator.push({
+              component: ProductDetail,
+              name: 'ProductDetail',
+              data: '产品详情',
+              info: text,
+            });
+          });
+  }
+
+
   _renderHorList(rowData, sectionID, rowID){
     return(
-    <TouchableHighlight underlayColor={'#fff'}>
+    <TouchableHighlight underlayColor={'#fff'}  onPress={this._onItemclick.bind(this,rowData.title)}>
     <View style={styles.listitem}>
     <View>
       <Image source={rowData.img}
@@ -44,7 +59,7 @@ class ProductClassComponent extends React.Component {
 
   _renderGridList(rowData, sectionID, rowID){
     return(
-    <TouchableHighlight underlayColor={'#fff'}>
+    <TouchableHighlight underlayColor={'#fff'} onPress={this._onItemclick.bind(this,rowData.title)}>
     <View style={styles.listgriditem}>
     <View>
       <Image source={rowData.img}
@@ -57,7 +72,7 @@ class ProductClassComponent extends React.Component {
 
 
   render(){
-    if (this.props.item == '0') {
+    if (this.props.item == 0) {
       return(
         <View style={{flex:1,padding:5}}>
           <ListView contentContainerStyle={styles.listhor} dataSource={this.state.clf} renderRow={this._renderHorList.bind(this)}/>

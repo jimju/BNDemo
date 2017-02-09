@@ -7,10 +7,13 @@ import {
   View,
   Image,
   ScrollView,
+  TouchableOpacity,
+  InteractionManager,
   Dimensions,
 } from 'react-native';
 import TitleIndex from '../component/TitleIndex';
 import ProductList from '../component/ProductList';
+import ProductDetail from './ProductDetail';
 import {IndicatorViewPager, PagerDotIndicator} from 'rn-viewpager';
 
 var {height, width} = Dimensions.get('window');
@@ -18,6 +21,9 @@ var item_width = (width-1)/2;
 var ScreenWidth = Dimensions.get('window').width;
 //首页
 class Index extends React.Component {
+    constructor(props) {
+      super(props);
+    }
   render(){
     return(
         <View style={styles.conten}>
@@ -36,11 +42,15 @@ class Index extends React.Component {
                 </View>
           </IndicatorViewPager>
 
+
           <View style={{margin:5,flexDirection:'row',alignItems:'center',height:65}}>
+          <TouchableOpacity >
+
             <Image style={styles.imagebg} source={require('../res/images/anli.jpg')}>
             <Image style={styles.itemimage} source={require('../res/images/anli_icon.png')}/>
             <Text style={styles.itemtext}>案例推荐</Text>
             </Image>
+              </TouchableOpacity>
             <Image style={styles.imagebg} source={require('../res/images/youshi.jpg')}>
               <Image style={styles.itemimage} source={require('../res/images/youshi_icon.png')}/>
             <Text style={styles.itemtext}>海鸥优势</Text>
@@ -51,8 +61,7 @@ class Index extends React.Component {
             <Image style={styles.recomimage} source={require('../res/images/mainrecom.png')}/>
           </View>
 
-          <ProductList />
-
+          <ProductList {...this.props} />
         </View>
         </ScrollView>
         </View>
@@ -66,6 +75,20 @@ class Index extends React.Component {
 
    _renderDotIndicator() {
        return <PagerDotIndicator pageCount={3} />;
+   }
+
+   //跳转产品详情
+   _onItemclick(){
+     const {navigator} = this.props;
+     InteractionManager.runAfterInteractions(() => {
+             navigator.push({
+               component: ProductDetail,
+               name: 'ProductDetail',
+               params:{
+                 name:"text",
+               }
+             });
+           });
    }
 
   //  _renderTabIndicator() {

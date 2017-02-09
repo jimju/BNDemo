@@ -42,7 +42,7 @@ export default class TabComponent extends React.Component {
                 renderIcon={() => <Image style={styles.baricon} source={require('../res/images/home1.png')} />}
                 renderSelectedIcon={() => <Image style={styles.baricon} source={require('../res/images/home.png')} />}
                 onPress={() => this.setState({ selectedTab: 'home' })}>
-                <Index />
+                <Index {...this.props} />
               </TabNavigator.Item>
               <TabNavigator.Item
                 selected={this.state.selectedTab === 'profile'}
@@ -50,7 +50,7 @@ export default class TabComponent extends React.Component {
                 renderIcon={() => <Image style={styles.baricon} source={require('../res/images/pro1.png')} />}
                 renderSelectedIcon={() => <Image style={styles.baricon} source={require('../res/images/pro.png')} />}
                 onPress={() => this.setState({ selectedTab: 'profile' })}>
-                <Product />
+                <Product {...this.props}/>
               </TabNavigator.Item>
 
               <TabNavigator.Item
@@ -59,7 +59,7 @@ export default class TabComponent extends React.Component {
                 renderIcon={() => <Image style={styles.baricon} source={require('../res/images/me1.png')} />}
                 renderSelectedIcon={() => <Image style={styles.baricon} source={require('../res/images/me.png')} />}
                 onPress={() => this.setState({ selectedTab: 'me' })}>
-                <Mine />
+                <Mine {...this.props}/>
               </TabNavigator.Item>
 
               </TabNavigator>
