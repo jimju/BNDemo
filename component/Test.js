@@ -16,7 +16,7 @@ class Test extends React.Component {
 const styles = StyleSheet.create({
   content:{
     flex:1,
-    flexDirection:'row',
+    flexDirection:'column',
   }
 });
 export {Test as default};

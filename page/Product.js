@@ -4,12 +4,12 @@ import {
   Text,
   View,
   StyleSheet,
-  Image,
-  TouchableHighlight,
+  Image,TouchableOpacity,InteractionManager,
   ListView
 } from 'react-native';
 
 import TitleProduct from '../component/TitleProduct';
+import ProductSearch from './ProductSearch';
 import ProductClassComponent from '../component/ProductClassComponent';
 
 class Product extends React.Component {
@@ -29,12 +29,13 @@ class Product extends React.Component {
 }
 
 //跳转产品详情
-_onItemclick(text){
+_onSearchClick(){
   const {navigator} = this.props;
   InteractionManager.runAfterInteractions(() => {
           navigator.push({
-            component: ProductDetail,
-            name: 'ProductDetail',
+            component: ProductSearch,
+            name: 'ProductSearch',
+            focus:'true'
           });
         });
 }
@@ -51,9 +52,9 @@ _onItemclick(text){
    _renderRow(rowData, sectionID, rowID){
           return (
                   <View>
-                    <TouchableHighlight underlayColor={'#fff'} onPress={() => this._pressRow(rowID)} >
+                    <TouchableOpacity onPress={() => this._pressRow(rowID)} >
                       <Text>{rowData.name}</Text>
-                      </TouchableHighlight>
+                      </TouchableOpacity>
                   </View>
               );
       }
@@ -67,11 +68,11 @@ _onItemclick(text){
       );
     }else {
     return(
-      <TouchableHighlight underlayColor={'#fff'} onPress={() => this._pressRow(rowID)}>
+      <TouchableOpacity onPress={() => this._pressRow(rowID)}>
         <View style={{flex:1,flexDirection:'column',justifyContent:'center',alignItems:'center',padding:10,borderBottomWidth:0.5,borderBottomColor:'#d7d7db'}}>
           <Text style={{fontSize:14}}>{rowData.name}</Text>
         </View>
-      </TouchableHighlight>
+      </TouchableOpacity>
     );
       }
   }
@@ -82,12 +83,14 @@ _onItemclick(text){
   render(){
     return(
         <View style={{flex:1}}>
-          <TitleProduct />
+          <TitleProduct {...this.props}/>
 
+          <TouchableOpacity onPress={() => this._onSearchClick()}>
           <View style={styles.searchview}>
             <Image style={{width:15,height:15}} source={require('../res/images/search.png')}/>
             <Text style={styles.searchtext}>请输入要搜索的商品</Text>
           </View>
+          </TouchableOpacity>
 
           <View style={{height:1,backgroundColor:'#d7d7db'}}>
           </View>

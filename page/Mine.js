@@ -1,10 +1,25 @@
 'use strict'
 import React, { Component } from 'react';
 import {
-  Text,StyleSheet,View,Image,TouchableOpacity
+  Text,StyleSheet,View,Image,TouchableOpacity,InteractionManager
 } from 'react-native';
+
+import Notify from './Notify';
 //个人中心
 class Mine extends React.Component {
+  //跳转消息
+  _onNotifyClick(){
+    const {navigator} = this.props;
+    InteractionManager.runAfterInteractions(() => {
+            navigator.push({
+              component: Notify,
+              name: 'Notify',
+              data:'消息',
+            });
+          });
+  }
+
+
   render(){
     return(
         <View style={styles.content}>
@@ -16,7 +31,7 @@ class Mine extends React.Component {
           <MineItem name="浏览记录" icon={require('../res/images/mine_record.png')}/>
           <MineItem name="我的收藏" icon={require('../res/images/mine_collection.png')}/>
           <MineItem name="关于我们" icon={require('../res/images/about_us.png')}/>
-          <MineItem name="消息通知" icon={require('../res/images/mine_message.png')}/>
+          <TouchableOpacity onPress={() => this._onNotifyClick()}><MineItem name="消息通知" icon={require('../res/images/mine_message.png')}/></TouchableOpacity>
           <MineItem name="设置" icon={require('../res/images/mine_setting.png')}/>
         </View>
     );
@@ -27,9 +42,10 @@ class MineItem extends React.Component {
   constructor(props){
     super(props);
   }
+
   render(){
     return(
-        <TouchableOpacity>
+
         <View style={styles.item}>
           <Image style={styles.itemimg} source={this.props.icon}/>
           <Text style={styles.itemtext}>{this.props.name}</Text>
@@ -37,7 +53,7 @@ class MineItem extends React.Component {
           </View>
           <Image style={[styles.itemimg]} source={require('../res/images/jiantou.png')}/>
         </View>
-        </TouchableOpacity>
+
       );
   }
 }

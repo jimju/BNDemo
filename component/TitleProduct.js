@@ -4,15 +4,30 @@ import React, { Component
 import {
   Text,
   StyleSheet,
-  View,
+  View,TouchableOpacity,InteractionManager,
   Image
 } from 'react-native';
 
+import Notify from '../page/Notify';
 class TitleProduct extends React.Component {
+
+    //跳转消息
+    _onNotifyClick(){
+      const {navigator} = this.props;
+      InteractionManager.runAfterInteractions(() => {
+              navigator.push({
+                component: Notify,
+                name: 'Notify',
+                data:'消息',
+              });
+            });
+    }
   render(){
     return(
         <View style={styles.view}>
-        <Image  style={[styles.image,{resizeMode:'stretch'}]} source={require('../res/images/information.png')}/>
+        <TouchableOpacity onPress={() => this._onNotifyClick()}>
+          <Image  style={[styles.image,{resizeMode:'stretch'}]} source={require('../res/images/information.png')}/>
+        </TouchableOpacity>
         <Text style={styles.titlttext}>SEAGULL</Text>
         <Image style={styles.image} source={require('../res/images/scan.png')}/>
         </View>

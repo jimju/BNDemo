@@ -27,7 +27,7 @@ class Index extends React.Component {
   render(){
     return(
         <View style={styles.conten}>
-        <TitleIndex />
+        <TitleIndex {...this.props} />
         <ScrollView>
         <View style={styles.conten}>
         <IndicatorViewPager style={{height:200}} indicator={this._renderDotIndicator()}>
@@ -45,16 +45,17 @@ class Index extends React.Component {
 
           <View style={{margin:5,flexDirection:'row',alignItems:'center',height:65}}>
           <TouchableOpacity >
-
             <Image style={styles.imagebg} source={require('../res/images/anli.jpg')}>
             <Image style={styles.itemimage} source={require('../res/images/anli_icon.png')}/>
             <Text style={styles.itemtext}>案例推荐</Text>
             </Image>
               </TouchableOpacity>
+              <TouchableOpacity >
             <Image style={styles.imagebg} source={require('../res/images/youshi.jpg')}>
               <Image style={styles.itemimage} source={require('../res/images/youshi_icon.png')}/>
             <Text style={styles.itemtext}>海鸥优势</Text>
             </Image>
+            </TouchableOpacity>
           </View>
 
           <View style={{width:ScreenWidth,justifyContent:'center',alignItems:'center',margin:5}}>
@@ -91,22 +92,7 @@ class Index extends React.Component {
            });
    }
 
-  //  _renderTabIndicator() {
-  //      let tabs = [{
-  //              text: 'Home',
-  //              iconSource: require('../imgs/ic_tab_home_normal.png'),
-  //              selectedIconSource: require('../imgs/ic_tab_home_click.png')
-  //          },{
-  //              text: 'Message',
-  //              iconSource: require('../imgs/ic_tab_task_normal.png'),
-  //              selectedIconSource: require('../imgs/ic_tab_task_click.png')
-  //          },{
-  //              text: 'Profile',
-  //              iconSource: require('../imgs/ic_tab_my_normal.png'),
-  //              selectedIconSource: require('../imgs/ic_tab_my_click.png')
-  //      }];
-  //      return <PagerTabIndicator tabs={tabs} />;
-  //  }
+
 }
 
 const styles = StyleSheet.create({

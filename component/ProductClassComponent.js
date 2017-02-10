@@ -5,6 +5,7 @@ import {
 } from 'react-native';
 
 import ProductDetail from '../page/ProductDetail';
+import ProductSearch from '../page/ProductSearch';
 
 var ScreenWidth = require('Dimensions').get('window').width;
 class ProductClassComponent extends React.Component {
@@ -39,6 +40,18 @@ class ProductClassComponent extends React.Component {
           });
   }
 
+  //跳转产品搜索
+  _onSearchClick(text){
+    const {navigator} = this.props;
+    InteractionManager.runAfterInteractions(() => {
+            navigator.push({
+              component: ProductSearch,
+              name: 'ProductSearch',
+              value: text,
+            });
+          });
+  }
+
 
   _renderHorList(rowData, sectionID, rowID){
     return(
@@ -59,7 +72,7 @@ class ProductClassComponent extends React.Component {
 
   _renderGridList(rowData, sectionID, rowID){
     return(
-    <TouchableHighlight underlayColor={'#fff'} onPress={this._onItemclick.bind(this,rowData.title)}>
+    <TouchableHighlight underlayColor={'#fff'} onPress={this._onSearchClick.bind(this,rowData.title)}>
     <View style={styles.listgriditem}>
     <View>
       <Image source={rowData.img}
