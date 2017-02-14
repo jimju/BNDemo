@@ -7,11 +7,13 @@ import {
   View,
   InteractionManager,
   Image,
+  Platform,
   TouchableOpacity,
 } from 'react-native';
 
 import Notify from '../page/Notify';
 import ProductSearch from '../page/ProductSearch';
+const STATUS_BAR_HEIGHT = (Platform.OS === 'ios' ? 20 : 0)
 class TitleIndex extends React.Component {
 
   //跳转产品详情
@@ -63,7 +65,8 @@ const styles = StyleSheet.create({
   view:{
     flexDirection:'row',
     backgroundColor:'#015ba7',
-    height:50,
+    height:40+STATUS_BAR_HEIGHT,
+    paddingTop:STATUS_BAR_HEIGHT,
     alignItems:'center',
   },
   image:{

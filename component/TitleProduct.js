@@ -5,10 +5,11 @@ import {
   Text,
   StyleSheet,
   View,TouchableOpacity,InteractionManager,
-  Image
+  Image,Platform
 } from 'react-native';
 
 import Notify from '../page/Notify';
+const STATUS_BAR_HEIGHT = (Platform.OS === 'ios' ? 20 : 0)
 class TitleProduct extends React.Component {
 
     //跳转消息
@@ -45,7 +46,8 @@ const styles = StyleSheet.create({
   view:{
     flexDirection:'row',
     backgroundColor:'#015ba7',
-    height:50,
+    height:40+STATUS_BAR_HEIGHT,
+    paddingTop:STATUS_BAR_HEIGHT,
     alignItems:'center',
   },
   image:{

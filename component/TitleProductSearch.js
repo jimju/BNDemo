@@ -8,9 +8,10 @@ import {
   TextInput,
   InteractionManager,
   TouchableOpacity,
-  Image
+  Image,Platform
 } from 'react-native';
 
+const STATUS_BAR_HEIGHT = (Platform.OS === 'ios' ? 20 : 0)
 class TitleProductSearch extends React.Component {
 
 
@@ -46,7 +47,8 @@ const styles = StyleSheet.create({
   view:{
     flexDirection:'row',
     backgroundColor:'#015ba7',
-    height:50,
+    height:40+STATUS_BAR_HEIGHT,
+    paddingTop:STATUS_BAR_HEIGHT,
     alignItems:'center',
   },
   image:{

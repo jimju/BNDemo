@@ -10,10 +10,14 @@ import {
   BackAndroid,
   StyleSheet,
   Navigator,
+  StatusBar,
+  Platform,
 } from 'react-native';
 
 import Splash from './Splash';
 
+export const STATUS_BAR_HEIGHT = (Platform.OS === 'ios' ? 20 : 0)
+export const ABOVE_LOLIPOP = Platform.Version && Platform.Version > 19
 var _navigator;
 export default class app extends React.Component {
   constructor(props) {
@@ -28,7 +32,14 @@ export default class app extends React.Component {
 
   render(){
     return(<View style={styles.container}>
-        <Navigator initialRoute={{
+      <StatusBar
+           barStyle='light-content'
+           backgroundColor='transparent'
+           style={{height: STATUS_BAR_HEIGHT}}
+      />
+        <Navigator
+        style={{flex:1}}
+        initialRoute={{
           component:Splash,
           name:'Splash',
         }}
@@ -48,5 +59,6 @@ export default class app extends React.Component {
 var styles = StyleSheet.create({
   container:{
     flex:1,
+    flexDirection:'column'
   }
 });

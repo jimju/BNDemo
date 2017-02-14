@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   content:{
     flex:1,
     flexDirection:'column',
-    backgroundColor:'#f3f7fb',
+    backgroundColor:'white',
   },
   sorttext:{
     padding:5,
